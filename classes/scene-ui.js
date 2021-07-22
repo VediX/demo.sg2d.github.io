@@ -38,7 +38,7 @@ export default class SceneUI {
 		
 		// Place the CANVAS label in the DOM element using a graphical font
 		document.querySelector("#title").innerText = "";
-		this.sgTitle = new SG2D.LabelCanvas("SG2D EXAMPLE", {
+		this.sgTitle = new SG2D.LabelCanvas("SG2D DEMO", {
 			font: "metal_yellow_big",
 			parent: document.querySelector("#title")
 		});

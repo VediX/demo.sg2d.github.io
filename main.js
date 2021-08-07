@@ -23,7 +23,7 @@ class Application {
 		},
 		properties: {
 			sounds: true,
-			music: true,
+			music: false,
 			musicVolume: 10,
 			volumeDecreaseDistance: 10, // units changes in clusters
 			environment2D: true,

@@ -38,21 +38,25 @@ class Application {
 		let btnPlay = document.querySelector("#btnPlay");
 		btnPlay.dataset.state = "ready";
 		
-		btnPlay.addEventListener("click", ()=>{
+		let callback = ()=>{
+			
+			btnPlay.removeEventListener("click", callback);
 			
 			btnPlay.dataset.state = "loading";
 			
 			Promise.all([
 				GraphicsPreparer.load(),
 				SG2D.Sound.load(Application.soundConfig.options, Application.soundConfig.properties),
-				Menu.load()
+				(new Menu()).load()
 			]).then(()=>{
 				document.querySelector("#loader_screen").style.display = "none";
 				document.querySelector("#game_screen").style.display = "block";
 				let scene = this.createScene();
 				//scene.deferred.then(()=>SG2D.Sound.musicPlay("level01")); // The second way to play the melody in a circle for the specified view
 			});
-		});
+		};
+		
+		btnPlay.addEventListener("click", callback);
 	}
 	
 	createScene() {
@@ -77,7 +81,7 @@ class Application {
 				rotate: 45, // Start rotate of camera. Default 0
 				position: {x: 224, y: 224}, // Start position of camera. Default [0, 0]
 				scale_min: 2,
-				scale_max: 8,
+				scale_max: 10,
 				movement_by_pointer: SG2D.Camera.MOVEMENT_BY_POINTER_RIGHT,
 				rotate_adjustment: -90 // Base offset of the camera angle in degrees. Default 0
 			},
@@ -139,12 +143,6 @@ class Application {
 		this.scene.run();
 		
 		camera.followTo(this.player);
-		/* TODO:
-		camera.setRelativity({
-			follow: this.player, // The camera can move smoothly behind player. Also, camera can be moved to any on map, after which it will also move in parallel with player
-			scaling: this.player, //TODO: The camera is zoomed relative to cursor position, or relative to tile
-			rotation: this.player //TODO: The camera is rotated either relative to center of the screen, or relative to player
-		});*/
 		
 		return this.scene;
 	}

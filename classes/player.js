@@ -51,7 +51,7 @@ export default class Player extends ObjectBaseLifeBand {
 		},
 		track_left: {
 			texture: "objects/player-track_1",
-			anchor: { x: -3.2, y: 2.3 },
+			anchor: { x: -4, y: 2.7 },
 			zindex: 1,
 			animation: {
 				count: 8,
@@ -63,7 +63,7 @@ export default class Player extends ObjectBaseLifeBand {
 		},
 		track_right: {
 			texture: "objects/player-track_1",
-			anchor: { x: -3.2, y: -1.3 },
+			anchor: { x: -4, y: -1.6 },
 			zindex: 1,
 			animation: {
 				count: 8,
@@ -291,9 +291,9 @@ export default class Player extends ObjectBaseLifeBand {
 		this.body = Matter.Body.create(Object.assign(
 			{
 				parts: [
-					Matter.Bodies.trapezoid(0, -28, 100, 12, 0.1, {}),
-					Matter.Bodies.rectangle(0, 0, 70, 42, {}),
-					Matter.Bodies.trapezoid(0, 28, 100, 12, 0.1, { angle: 3.1415 })
+					Matter.Bodies.trapezoid(0, -24, 83, 13, 0.1, {}),
+					Matter.Bodies.rectangle(0, 0, 67, 34, {}),
+					Matter.Bodies.trapezoid(0, 24, 83, 13, 0.1, { angle: 3.1415 })
 				]
 			},
 			this.constructor.MATTER

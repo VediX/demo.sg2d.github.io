@@ -7,6 +7,7 @@ export default class GraphicsPreparer {
 	static cursors = {};
 	static load() {
 		let loader = PIXI.Loader.shared;
+		
 		loader.add([
 			{ name: "assets", url: "res/graphics/assets.json" },
 			{ name: "displacement_static", url: "res/graphics/displacement_static.jpg" },

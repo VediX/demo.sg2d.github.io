@@ -26,8 +26,9 @@ export default class GraphicsPreparer {
 
 			// Get the mouse cursor icons
 			this.cursors.default = "url('" + URL.createObjectURL(await SG2D.Utils.getTextureAsBlob("ui/cursor_default")) + "'),auto";
-			this.cursors.target = "url('" + URL.createObjectURL(await SG2D.Utils.getTextureAsBlob("ui/cursor_target")) + "') 16 16,auto";
+			this.cursors.hover = "url('" + URL.createObjectURL(await SG2D.Utils.getTextureAsBlob("ui/cursor_target")) + "') 16 16,auto";
 			this.cursors.move = "url('" + URL.createObjectURL(await SG2D.Utils.getTextureAsBlob("ui/cursor_move")) + "') 16 16,auto";
+			this.cursors.pointer = "url('" + URL.createObjectURL(await SG2D.Utils.getTextureAsBlob("ui/cursor_pointer")) + "') 4 0,auto";
 
 			// Process sprites to eliminate stripe artifacts
 			SG2D.Utils.setBorderAlphaTextures();

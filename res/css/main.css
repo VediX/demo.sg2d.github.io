@@ -57,34 +57,27 @@
 .screen-game #title {
   position: fixed;
   top: 0px;
-  left: 0px;
-  right: 0px;
-  text-align: center;
   padding: 5px;
   z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: cell;
 }
 .screen-game .main-menu {
   position: fixed;
   right: 5px;
   top: 5px;
-}
-.screen-game .main-menu img {
-  width: 68px;
-  height: 68px;
-}
-.screen-game .main-menu.loading img,
-.screen-game .main-menu.loading img:after {
-  content: url('../../res/graphics/loading.gif');
-}
-.screen-game .main-menu div.menu-icon {
-  position: absolute;
-  right: 0px;
-  top: 0px;
+  z-index: 11;
 }
 .screen-game .main-menu div.menu-item {
   display: none;
   position: absolute;
   right: 0px;
+  top: 0px;
+  opacity: 0.7;
+}
+.screen-game .main-menu div.menu-item.menu {
+  display: block;
 }
 .screen-game .main-menu div.menu-item.cancel {
   top: 0px;
@@ -95,6 +88,6 @@
 .screen-game .main-menu div.menu-item.music {
   top: 136px;
 }
-.screen-game .main-menu div.menu-item.options {
-  top: 204px;
+.screen-game .main-menu div.menu-item:hover {
+  opacity: 1;
 }

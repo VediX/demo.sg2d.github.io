@@ -6,7 +6,9 @@
 
 "use strict";
 
+import Config from "./classes/config.js";
 import GraphicsPreparer from "./classes/graphics-preparer.js";
+import Sound from "./classes/sound.js";
 import SceneEffects from "./classes/scene-effects.js";
 import SceneUI from "./classes/scene-ui.js";
 import Area from "./classes/area.js";
@@ -14,22 +16,6 @@ import Menu from "./classes/menu.js";
 import Player from "./classes/player.js";
 
 class Application {
-	
-	static soundConfig = {
-		options: {
-			music_dir: "./res/music/",
-			sounds_dir: "./res/sounds/",
-			config: "./res/sounds.json" // or object
-		},
-		properties: {
-			sounds: true,
-			music: false,
-			musicVolume: 10,
-			volumeDecreaseDistance: 10, // units changes in clusters
-			environment2D: true,
-			view: "profile" // You can start the melodies in this way or in another way, see below
-		}
-	};
 	
 	constructor() {
 		
@@ -46,13 +32,15 @@ class Application {
 			
 			Promise.all([
 				GraphicsPreparer.load(),
-				SG2D.Sound.load(Application.soundConfig.options, Application.soundConfig.properties),
+				SG2D.Sound.load(Sound.options, Sound.getProperties()),
 				(new Menu()).load()
 			]).then(()=>{
 				document.querySelector("#loader_screen").style.display = "none";
 				document.querySelector("#game_screen").style.display = "block";
 				let scene = this.createScene();
 				//scene.deferred.then(()=>SG2D.Sound.musicPlay("level01")); // The second way to play the melody in a circle for the specified view
+				
+				Menu.bindScene(scene);
 			});
 		};
 		
@@ -86,11 +74,7 @@ class Application {
 				rotate_adjustment: -90 // Base offset of the camera angle in degrees. Default 0
 			},
 			pointer: {
-				cursors: {
-					default: GraphicsPreparer.cursors.default,
-					hover: GraphicsPreparer.cursors.target,
-					move: GraphicsPreparer.cursors.move
-				}
+				cursors: GraphicsPreparer.cursors
 			},
 			iterate: this.iterate.bind(this),
 			resize: this.resize.bind(this),
@@ -143,6 +127,12 @@ class Application {
 		this.scene.run();
 		
 		camera.followTo(this.player);
+		/* TODO:
+		camera.setRelativity({
+			follow: this.player, // The camera can move smoothly behind player. Also, camera can be moved to any on map, after which it will also move in parallel with player
+			scaling: this.player, //TODO: The camera is zoomed relative to cursor position, or relative to tile
+			rotation: this.player //TODO: The camera is rotated either relative to center of the screen, or relative to player
+		});*/
 		
 		return this.scene;
 	}

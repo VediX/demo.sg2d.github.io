@@ -63,44 +63,34 @@
 	#title {
 		position: fixed;
 		top: 0px;
-		left: 0px;
-		right: 0px;
-		text-align: center;
 		padding: 5px;
 		z-index: 10;
+		left: 50%;
+		transform: translateX(-50%);
+		cursor: cell;
 	}
 	
 	.main-menu {
 		position: fixed;
 		right: 5px;
 		top: 5px;
-		
-		img {
-			width: 68px;
-			height: 68px;
-		}
-		
-		&.loading {
-			img, img:after {
-				content: url('../../res/graphics/loading.gif')
-			}
-		}
-		
-		div.menu-icon {
-			position: absolute;
-			right: 0px;
-			top: 0px;
-		}
+		z-index: 11;
 		
 		div.menu-item {
 			display: none;
 			position: absolute;
 			right: 0px;
+			top: 0px;
+			opacity: 0.7;
 			
+			&.menu { display: block; }
 			&.cancel { top: 0px; }
 			&.sounds { top: 68px; }
 			&.music { top: 136px; }
-			&.options { top: 204px; }
+			
+			&:hover {
+				opacity: 1
+			}
 		}
 	}
 }

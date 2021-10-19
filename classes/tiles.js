@@ -1,4 +1,4 @@
-import SG2DTransitions from "./../libs/sg2d/plugins/sg2d-transitions.js";
+import SG2DTransitions from "./../sg2d/plugins/sg2d-transitions.js";
 
 export class Sand extends SG2D.Tile {
 	static texture = "lands/sand";

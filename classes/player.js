@@ -39,7 +39,7 @@ export default class Player extends ObjectBaseLifeBand {
 		accelerator: {
 			texture: "animations/accelerator_1",
 			layer: "animations",
-			anchor: { x: 2.7, y: 0.45 },
+			anchor: { x: 2.1, y: 0.45 },
 			zindex: 0,
 			visible: false,
 			animation: {
@@ -292,7 +292,7 @@ export default class Player extends ObjectBaseLifeBand {
 			{
 				parts: [
 					Matter.Bodies.trapezoid(0, -24, 83, 13, 0.1, {}),
-					Matter.Bodies.rectangle(0, 0, 67, 34, {}),
+					Matter.Bodies.rectangle(-5, 0, 67, 34, {}),
 					Matter.Bodies.trapezoid(0, 24, 83, 13, 0.1, { angle: 3.1415 })
 				]
 			},

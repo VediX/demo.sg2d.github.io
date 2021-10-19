@@ -38,7 +38,9 @@ class Application {
 				document.querySelector("#loader_screen").style.display = "none";
 				document.querySelector("#game_screen").style.display = "block";
 				let scene = this.createScene();
-				//scene.deferred.then(()=>SG2D.Sound.musicPlay("level01")); // The second way to play the melody in a circle for the specified view
+				
+				// TODO: bug:
+				//scene.promise.then(()=>SG2D.Sound.musicPlay("level01")); // Второй способ играть мелодию по кругу для указанной вьюхи
 				
 				Menu.bindScene(scene);
 			});
@@ -86,7 +88,7 @@ class Application {
 				bodies: {},
 				trees: {},
 				animations: {},
-				interface: { position: SG2D.LAYER_POSITION_FIXED, zIndex: 10 }
+				interface: { position: SG2D.Consts.LAYER_POSITION_FIXED, zIndex: 10 }
 			},
 			plugins: ["sg2d-transitions"],
 			sound: {

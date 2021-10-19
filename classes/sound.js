@@ -9,7 +9,8 @@ export default class Sound extends SG2D.Model {
 	static options = {
 		music_dir: "./res/music/",
 		sounds_dir: "./res/sounds/",
-		config: "./res/sounds.json" // or object
+		config: "./res/sounds.json", // or object
+		library_pathfile: "./sg2d/libs/pixi/pixi-sound.js"
 	};
 	
 	static defaultProperties = {

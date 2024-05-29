@@ -51,12 +51,15 @@ class Application {
 	
 	createScene() {
 		
+		const cameraPosX = Config.bTest1 ? 128 * 64 : 224;
+		const cameraPosY = Config.bTest1 ? 128 * 64 : 224;
+		
 		this.scene =  new SG2D.Application({
 			id: "level01",
 			canvasId: "canvas",
 			cellsizepix: 64,
 			clusters: {
-				areasize: 64
+				areasize: (Config.bTest1 ? 256 : 64)
 			},
 			pixi: { // config passed to PIXI.Application constructor
 				antialias: true,
@@ -69,8 +72,8 @@ class Application {
 			camera: {
 				rotation: true,
 				rotate: 45, // Start rotate of camera. Default 0
-				position: {x: 224, y: 224}, // Start position of camera. Default [0, 0]
-				scale_min: 2,
+				position: {x: cameraPosX, y: cameraPosY}, // Start position of camera. Default [0, 0]
+				scale_min: (Config.bTest1 ? 1 : 2),
 				scale_max: 10,
 				movement_by_pointer: SG2D.Camera.MOVEMENT_BY_POINTER_RIGHT,
 				rotate_adjustment: -90 // Base offset of the camera angle in degrees. Default 0
@@ -116,8 +119,11 @@ class Application {
 		// Graphic effects
 		this.sceneEffect = SceneEffects.toApply(this.scene);
 		
+		const playerX = Config.bTest1 ? 129 : 5;
+		const playerY = Config.bTest1 ? 129 : 5;
+		
 		this.player = new Player({
-			position: this.scene.clusters.getCluster(5,5).position,
+			position: this.scene.clusters.getCluster(playerX, playerY).position,
 			angle: 45
 		}, {
 			pointer: this.scene.pointer,
@@ -142,7 +148,7 @@ class Application {
 	iterate() {
 		if (this.scene.frame_index % 30 === 0) {
 			document.querySelector("#info > span:nth-child(1)").innerText = (1 / this.scene.tRequestAnimationFrame).toFixed(0); // FPS
-			document.querySelector("#info > span:nth-child(2)").innerText =SG2D.Application.spritesCount; // Sprites count
+			document.querySelector("#info > span:nth-child(2)").innerText = SG2D.Application.spritesCount + '/' + SG2D.Clusters.tiles.length; // Visible sprites / total
 		}
 	}
 	

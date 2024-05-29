@@ -3,6 +3,8 @@
 export default class Config extends SGModel {
 	
 	static singleInstance = true;
+	
+	static bTest1 = (location.hash === '#test1');
 		
 	static defaultProperties = {
 		sounds: true,

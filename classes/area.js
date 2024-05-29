@@ -3,21 +3,26 @@
 import {Water, Grass, Sand, Medikit, Tree, Bush} from "./tiles.js";
 import {BlockSteel, BlockStandard, BlockTriangle} from "./blocks.js";
 import Utils from "./utils.js";
+import Config from "./config.js";
 
 export default class Area {
 	
 	static build(clusters) {
 		
 		let cluster;
+		let areaX, areaY;
+		let aSpreading;
 		
 		// Water
-		let areaX = clusters.areasize>>1, areaY = clusters.areasize>>1;
-		let aSpreading = Utils.getSpreadingRandom( Math.floor(500 + Math.random() * 200));
-		for (var j = aSpreading.length; j--;) {
-			var oSpread = aSpreading[j];
-			if (cluster = clusters.getCluster(areaX + oSpread.x, areaY + oSpread.y)) {
-				if (! cluster._f) {
-					cluster._f = new Water({ position: cluster.position });
+		if (! Config.bTest1) {
+			areaX = clusters.areasize>>1, areaY = clusters.areasize>>1;
+			aSpreading = Utils.getSpreadingRandom( Math.floor(500 + Math.random() * 200));
+			for (var j = aSpreading.length; j--;) {
+				var oSpread = aSpreading[j];
+				if (cluster = clusters.getCluster(areaX + oSpread.x, areaY + oSpread.y)) {
+					if (! cluster._f) {
+						cluster._f = new Water({ position: cluster.position });
+					}
 				}
 			}
 		}
@@ -92,7 +97,9 @@ export default class Area {
 					cluster._e = new BlockTriangle({ position: cluster.position, type: SG2D.Math.normalize_a(a + 45) });
 				} else if (cc[a]._e && cc[a + 90]._e && cc[a + 180]._e && ! cc[a + 270]._e && Math.random() < 0.4) {
 					if (! cluster._f) {
-						cluster._m = new Medikit( {position: cluster.position });
+						if (! Config.bTest1) {
+							cluster._m = new Medikit( {position: cluster.position });
+						}
 					}
 				}
 			}
